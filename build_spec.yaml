@@ -1,0 +1,57 @@
+version: 0.2
+
+
+
+env:
+
+ variables:
+
+   BUCKET: "tb-self-service-portal-ui-dist"
+
+   ENVIRONMENT: "prod"
+
+
+
+phases:
+
+ install:
+
+   runtime-versions:
+
+     nodejs: 10
+
+   commands:
+
+     - echo Installing source NPM dependencies...
+
+     - npm install
+
+     - npm install -g @angular/cli
+
+
+
+ build:
+
+   commands:
+
+     - echo Build started on `date`
+
+     - ng build --${BUILD_ENV}
+
+ post_build:
+
+   commands:
+
+     - echo Build completed on `date`
+
+
+
+artifacts:
+
+ files:
+
+   - '**/*'
+
+ base-directory: 'dist/gft-tb-self-service-portal*'
+
+ discard-paths: no
